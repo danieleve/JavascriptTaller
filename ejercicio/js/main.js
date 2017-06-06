@@ -52,13 +52,32 @@ var elementosObtenidos = document.getElementsByTagName(elemento);
 }
 //cambiarAspecto('p');
 
+/*var x = document.getElementById("myBtn");
+x.addEventListener("click", function(){cambiarAspecto('p');});*/
 
-//document.getElementById('A').style.background='#f00';
+//---
 
-var x = document.getElementById("myBtn");
-x.addEventListener("click", function(){cambiarAspecto('p');});
+var sentences = document.getElementById('sentences');
+var buscar = document.getElementById('myBtn');
 
-function mySecondFunction() {
-    document.getElementById("demo").innerHTML += "Clicked!<br>";
-}
+var palabra = "de";
+
+var encontrado = false;
+buscar.addEventListener('click', function(event){
+    
+    var text = sentences.textContent;
+    var regex = new RegExp('('+palabra+')', 'ig');
+
+    if(encontrado){
+    	text = text.replace(regex, '<span class="">$1</span>');
+    	encontrado = false;
+    }else{
+    	text = text.replace(regex, '<span class="highlight">$1</span>');
+    	encontrado = true;
+    }
+
+    sentences.innerHTML = text;
+
+
+}, false);
 
